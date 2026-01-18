@@ -1,0 +1,17 @@
+# Data files (Keep your repo light; don't upload raw CSVs if they are large)
+*.csv
+*.xlsx
+*.parquet
+data/
+
+# Environment & Secrets
+.env
+venv/
+env/
+ipykernel_launcher.py
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
