@@ -5,24 +5,29 @@ from datetime import datetime
 def perform_feature_engineering(input_path = 'data/master_ingested.csv'):
     print("--- Starting Feature Engineering Pipeline ---")
     df = pd.read_csv(input_path)
-
-    # 1. Feature: Promo Expiry Proximity
-    # How many days until their promotional discount expires?(Negative means it already ended)
-    df['promo_expiry_date'] = pd.to_datetime(df['promo_expiry_date'])
+    # 1. Feature: Support Interaction Intesity
+    # Tickets per month of tenure
     today = datetime.now()
-    df['days_until_promo_expiry'] = (df['promo_expiry_date']-today).dt.days
+    df['signup_date'] = pd.to_datetime(df['signup_date'])
+    df['tenure_days'] = (today - df['signup_date']).dt.days
+    df['ticket_intensity'] = df['support_tickets_sum']/(df['tenure_days']/30)
+    # 2. Feature: Promo Expiry Proximity
+    # How many days until their promotional discount expires?(Negative means it already ended)
+    def calculate_promo_remaining(row):
+        if row['contract_type'] in ['One year', 'Two year']:
+            expiry_date = row['signup_date'] + pd.DateOffset(months=12)
+            return (expiry_date - today).days
+        return 0 # Month-to-month users are already at standard pricing
+    
+    df['days_until_promo_step_up'] = df.apply(calculate_promo_remaining, axis=1)
 
-    # 2. Feature: Usage Velocity
+    # 3. Feature: Usage Velocity
     # We compare recent usage (month 1-2) vs older usage(months 5-6)
     # df_usage from earlier had month_offset (1=recent, 6=oldest)
     df['usage_velocity'] = df['data_usage_gb_mean']/(df['data_usage_gb_mean']+1)
 
 
-    # 3. Feature: Support Interaction Intesity
-    # Tickets per month of tenure
-    df['signup_date'] = pd.to_datetime(df['signup_date'])
-    df['tenure_days'] = (today - df['signup_date']).dt.days
-    df['ticket_intensity'] = df['num_support_tickets']/(df['tenure_days']/30)
+ 
 
     # 4. Encoding Categorical Variables
     # Use one-hot encoding for categorical features
