@@ -1,8 +1,11 @@
 # ChurnLens: Predictive Revenue Protection Pipeline
 
 Author: Paul Tuccinardi
+
 LinkedIn : [PaulTuccinardi](https://www.linkedin.com/in/paul-tuccinardi/)
+
 GitHub: [PTucc327](https://github.com/PTucc327)
+
 Email: <paultuccinardi@gmail.com>
 
 ChurnLens is an end-to-end Machine Learning solution designed to identify high-risk subscribers for a major ISP. While many models focus on global accuracy, ChurnLens is optimized for Value-Driven Retention, utilizing temporal behavioral features and custom decision thresholds to maximize the identification of at-risk users.
