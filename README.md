@@ -24,8 +24,9 @@ Business Impact: In a 10,000-user environment, the model identifies 66% of churn
 ## 🛠️ The Technical Pipeline
 The architecture follows Big Tech "Production-Grade" standards, moving beyond Jupyter Notebooks into a modular Python structure.
 
-1. Data Architecture (src/data_gen.py)
-  - Instead of static CSVs, ChurnLens utilizes a synthetic relational database consisting of:
+### 1. **Data Architecture (src/data_gen.py)**
+
+  Instead of static CSVs, ChurnLens utilizes a synthetic relational database consisting of:
 
   - Customers: Demographic and contract metadata.
 
@@ -33,8 +34,9 @@ The architecture follows Big Tech "Production-Grade" standards, moving beyond Ju
 
   - Billing: Payment history and churn targets.
 
-2. Feature Engineering (src/feature_engineering.py)
-  - We derive high-signal business metrics from raw logs:
+### 2. **Feature Engineering (src/feature_engineering.py)**
+
+We derive high-signal business metrics from raw logs:
 
   - Usage Velocity: MoM change in data consumption (Mean/Max ratio).
 
@@ -42,7 +44,7 @@ The architecture follows Big Tech "Production-Grade" standards, moving beyond Ju
 
   - Service Friction: Ticket intensity per month of tenure.
 
-3. Model & Explainability (src/model_training.py)
+### 3. **Model & Explainability (src/model_training.py)**
   - XGBoost: Gradient boosting tuned for high-imbalance handling.
 
   - SMOTE: Synthetic Minority Over-sampling to balance the training set.
@@ -71,7 +73,7 @@ Strategic Trade-off: We prioritize Recall over Accuracy. In an ISP environment, 
 1. Clone the Repo:
 
 ```Bash
-git clone https://github.com/[Your-Username]/ChurnLens.git
+git clone https://github.com/PTucc327/ChurnLens.git
 ```
 2. Install Dependencies:
 
