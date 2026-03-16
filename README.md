@@ -90,4 +90,4 @@ python src/model_training.py
 ```
 
 ## 🎓 About the Author
-Masters of Science in Data Science | Pace University Specializing in Machine Learning and Business Intelligence. This project demonstrates my ability to translate complex statistical theory into actionable business revenue protection.
+Masters of Science in Data Science | Pace University. This project demonstrates my ability to translate complex statistical theory into actionable business revenue protection.
